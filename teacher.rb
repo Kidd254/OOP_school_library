@@ -4,3 +4,8 @@ class Teacher < Person
     super(id, name, age, parent_permission,)
     @specialization = specialization
 end
+
+def can_use_services?
+    @parent_permission
+  end
+end
