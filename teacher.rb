@@ -15,7 +15,6 @@ end
 # Create a Teacher instance
 teacher = Teacher.new(3, 35, 'Mathematics')
 
-
 # Output attributes using getters
 puts "Teacher ID: #{teacher.id}"
 puts "Teacher Age: #{teacher.age}"

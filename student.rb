@@ -9,7 +9,7 @@ class Student < Person
   end
 
   def play_hooky
-    "¯\(ツ)/¯"
+    '¯(ツ)/¯'
   end
 end
 student = Student.new(2, 17, 'Class A')
