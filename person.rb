@@ -1,22 +1,22 @@
 class Person
-    attr_accessor :name, :id, :age
+  attr_accessor :name, :id, :age
 
-    def initialize(id, age, name = 'unknown', parent_permission= true)
-        @id = id;
-        @age = age
-        @name= name
-        @parent_permission = parent_permission
-    end
+  def initialize(id, age, name = 'unknown', parent_permission: true)
+    @id = id
+    @age = age
+    @name = name
+    @parent_permission = parent_permission
+  end
 
-    def can_use_services?
-        of_age || @parent_permission
-    end
+  def can_use_services?
+    of_age || @parent_permission
+  end
 
-    private
+  private
 
-    def of_age?
-        @age>= 18
-    end
+  def of_age?
+    @age >= 18
+  end
 end
 
 person = Person.new(1, 25, 'Alice')
