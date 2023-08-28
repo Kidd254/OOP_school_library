@@ -1,8 +1,11 @@
-class Person
+require_relative 'ruby_files/nameable'
+
+class Person < Nameable
   attr_accessor :name, :age
   attr_reader :id
 
   def initialize(age, name = 'unknown', parent_permission: true)
+    super()
     @id = rand(1...1000)
     @age = age
     @name = name
@@ -13,6 +16,10 @@ class Person
     of_age? || @parent_permission
   end
 
+  def correct_name
+    @name
+  end
+
   private
 
   def of_age?
@@ -21,6 +28,6 @@ class Person
 end
 
 person = Person.new(25, 'Alice')
-puts "Person ID: #{person.id}"
-puts "Person Name: #{person.name}"
-puts "Person Age: #{person.age}"
+puts "Person ID: #{person.id}" # random id
+puts "Person Name: #{person.name}" # Alice
+puts "Person Age: #{person.age}" # 25
