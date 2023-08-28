@@ -33,4 +33,4 @@ puts "Person Age: #{person.age}"     # 25
 
 # test correct_name inherited method after override
 person2 = Person.new(27, 'Lawrence')
-puts person2.correct_name #Lawrence
+
