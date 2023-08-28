@@ -2,9 +2,10 @@ require_relative 'person'
 class Teacher < Person
   attr_accessor :specialization
 
-  def initialize(id, age, specialization, name = 'unknown', parent_permission: true)
-    super(id, age, name, parent_permission)
+  def initialize(age, specialization, name = 'unknown', parent_permission = true)
+    super(name, age, parent_permission: parent_permission)
     @specialization = specialization
+    @id = rand(1...1000)
   end
 
   def can_use_services?

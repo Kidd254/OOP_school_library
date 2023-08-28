@@ -3,16 +3,17 @@ require_relative 'person'
 class Student < Person
   attr_accessor :classroom
 
-  def initialize(id, age, classroom, name = 'unknown', parent_permission: true)
-    super(id, name, age, parent_permission)
+  def initialize(age, classroom, name = 'unknown', parent_permission: true)
+    super(age, name, parent_permission: parent_permission)
     @classroom = classroom
+    @id = rand(1...1000)
   end
 
   def play_hooky
     '¯(ツ)/¯'
   end
 end
-student = Student.new(2, 17, 'Class A')
+student = Student.new(17, 'Class A')
 
 # Output attributes using getters
 puts "Student ID: #{student.id}"

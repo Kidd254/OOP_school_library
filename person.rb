@@ -1,15 +1,15 @@
 class Person
-  attr_accessor :name, :id, :age
+  attr_accessor :name, :age, :id
 
-  def initialize(id, age, name = 'unknown', parent_permission: true)
-    @id = id
+  def initialize(age, name = 'unknown', parent_permission: true)
+    @id = rand(1...1000)
     @age = age
     @name = name
     @parent_permission = parent_permission
   end
 
   def can_use_services?
-    of_age || @parent_permission
+    of_age? || @parent_permission
   end
 
   private
@@ -19,7 +19,7 @@ class Person
   end
 end
 
-person = Person.new(1, 25, 'Alice')
+person = Person.new(25, 'Alice')
 puts "Person ID: #{person.id}"
 puts "Person Name: #{person.name}"
 puts "Person Age: #{person.age}"
