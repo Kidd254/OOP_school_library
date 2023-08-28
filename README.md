@@ -66,7 +66,7 @@ In order to run this project you need to have:
 To clone this repository to your desired folder, run the following command: <br>
 
 ```
-git clone git@github.com:Kidd254/Ruby_Modules.git
+git clone https://github.com/Kidd254/OOP_school_library.git
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
