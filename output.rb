@@ -1,9 +1,9 @@
 require_relative 'person'
 require_relative 'decorator'
-require_relative 'trimmerDecorator'
+require_relative 'trimmer_decorator'
 
-person = Person.new(22, 'maximilianus')
-decorated_person = Decorator.new(person) #capitalize the first letter
+person4 = Person.new(22, 'maximilianus')
+decorated_person = Decorator.new(person4) # capitalize the first letter
+trimmed_person = Trimmer.new(decorated_person) # trim the name
 
-trimmed_person = Trimmer.new(decorated_person) #trim the name
-puts trimmed_person
+puts trimmed_person.correct_name
