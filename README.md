@@ -35,7 +35,7 @@
 
 # 📖 OOP School Library <a id="about-project"></a>
 
-**OOP School Library** adds Person, Studend and Teacher classes.
+**OOP School Library** adds Person, Student and Teacher classes where the Person class acts as the parent to Student and Teacher Classes.
 
 ## 🛠 Built With <a id="built-with"></a>
 
