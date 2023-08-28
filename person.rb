@@ -1,4 +1,6 @@
-class Person
+require_relative 'nameable'
+
+class Person < Nameable
   attr_accessor :name, :age
   attr_reader :id
 
@@ -13,6 +15,10 @@ class Person
     of_age? || @parent_permission
   end
 
+  def correct_name
+    @name
+  end
+
   private
 
   def of_age?
@@ -21,6 +27,10 @@ class Person
 end
 
 person = Person.new(25, 'Alice')
-puts "Person ID: #{person.id}"
-puts "Person Name: #{person.name}"
-puts "Person Age: #{person.age}"
+puts "Person ID: #{person.id}"     #random id
+puts "Person Name: #{person.name}"  # Alice
+puts "Person Age: #{person.age}"     # 25
+
+# test correct_name inherited method after override
+person2 = Person.new(27, 'Lawrence')
+puts person2.correct_name #Lawrence
