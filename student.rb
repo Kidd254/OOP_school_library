@@ -10,7 +10,7 @@ class Student < Person
 
   def join_classroom(classroom)
     @classroom = classroom
-    classroom.add_student(self)  # 
+    classroom.add_student(self)
   end
 
   def play_hooky
