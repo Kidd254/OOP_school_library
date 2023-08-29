@@ -14,7 +14,6 @@ class Classroom
   end
 end
 
-
 classroom = Classroom.new('Math Room')
 student2 = Student.new('Alice', 17)
 student2.classroom = classroom
