@@ -8,6 +8,11 @@ class Student < Person
     @classroom = classroom
   end
 
+  def join_classroom(classroom)
+    @classroom = classroom
+    classroom.add_student(self)  # Add the student to the classroom's students
+  end
+
   def play_hooky
     '¯(ツ)/¯'
   end
