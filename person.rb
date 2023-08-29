@@ -1,7 +1,7 @@
 require_relative 'ruby_files/nameable'
 
 class Person < Nameable
-  attr_accessor :name, :age
+  attr_accessor :name, :age, :rentals
   attr_reader :id
 
   def initialize(age, name = 'unknown', parent_permission: true, rentals: [])
