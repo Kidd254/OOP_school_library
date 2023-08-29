@@ -10,4 +10,12 @@ class Classroom
     def add_student(student)
         @student << student
         student.classroom = self
+    end
 end
+
+
+classroom = Classroom.new("Math Room")
+student2 = Student.new("Alice", 17)
+student2.classroom = classroom  # Associate the student with the classroom
+
+puts student2.classroom.label
