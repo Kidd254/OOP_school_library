@@ -21,10 +21,8 @@ loop do
   case choice
   when 1
     app.list_books
-    p app.instance_variable_get(:@books)
   when 2
     app.list_people
-    p app.instance_variable_get(:@people) # Print people array
   when 3
     puts 'Enter role (student/teacher):'
     role = gets.chomp.downcase
