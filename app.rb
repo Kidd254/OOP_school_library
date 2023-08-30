@@ -29,9 +29,9 @@ class App
       parent_permission = gets.chomp.downcase == 'true'
       person = Student.new(age, name, parent_permission: parent_permission)
     elsif role == 'teacher'
-      puts 'Enter specialty:'
-      specialty = gets.chomp
-      person = Teacher.new(age, name, specialty: specialty)
+      puts 'Enter specialization:'
+      specialization = gets.chomp
+      person = Teacher.new(age, name, specialization: specialization)
     else
       puts 'Invalid role'
       return
@@ -52,6 +52,7 @@ class App
     @books << book
 
     puts "Book '#{title}' by #{author} created."
+    p @books  # Print the current state of the @books array
   end
 
   def list_rentals_for_person(person_id)
