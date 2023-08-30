@@ -62,3 +62,4 @@ loop do
   end
   gets.chomp
 end
+# rubocop:enable Metrics/BlockLength
