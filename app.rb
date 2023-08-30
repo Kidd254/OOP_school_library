@@ -52,7 +52,7 @@ class App
     @books << book
 
     puts "Book '#{title}' by #{author} created."
-    p @books  # Print the current state of the @books array
+    p @books # Print the current state of the @books array
   end
 
   def list_rentals_for_person(person_id)

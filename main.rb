@@ -4,9 +4,8 @@ require_relative 'teacher'
 require_relative 'associations/book'
 require_relative 'app'
 
-
 app = App.new
-
+# rubocop:disable Metrics/BlockLength
 loop do
   puts 'Choose an option:'
   puts '1. List all books'
@@ -22,17 +21,17 @@ loop do
   case choice
   when 1
     app.list_books
-    p app.instance_variable_get(:@books) 
+    p app.instance_variable_get(:@books)
   when 2
     app.list_people
-    p app.instance_variable_get(:@people)  # Print people array
+    p app.instance_variable_get(:@people) # Print people array
   when 3
     puts 'Enter role (student/teacher):'
     role = gets.chomp.downcase
     app.create_person(role)
   when 4
     app.create_book
-    p app.instance_variable_get(:@books)  # Print books array
+    p app.instance_variable_get(:@books) # Print books array
   when 5
     puts 'Enter person ID:'
     person_id = gets.chomp.to_i
