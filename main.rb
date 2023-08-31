@@ -29,7 +29,7 @@ loop do
     app.create_person(role)
   when 4
     app.create_book
-    p app.instance_variable_get(:@books) # Print books array
+    app.instance_variable_get(:@books) # Print books array
   when 5
     puts 'Enter person ID:'
     person_id = gets.chomp.to_i
@@ -58,6 +58,5 @@ loop do
   else
     puts 'Invalid option. Please choose again.'
   end
-  gets.chomp
 end
 # rubocop:enable Metrics/BlockLength
