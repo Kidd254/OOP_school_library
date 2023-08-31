@@ -14,7 +14,10 @@ class App
   end
 
   def list_people
-    @people.each { |person| puts person.name }
+    @people.each do |person|
+      role = person.is_a?(Student) ? 'Student' : 'Teacher'
+      puts "#{role}: #{person.name}"
+    end
   end
 
   def create_person(role)
