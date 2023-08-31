@@ -20,7 +20,14 @@ class App
     end
   end
 
+  # rubocop:disable Metrics/MethodLength
   def create_person(role)
+    classroom = nil
+
+    if role == 'student'
+      puts 'Enter classroom:'
+      classroom = gets.chomp
+    end
     puts 'Enter name:'
     name = gets.chomp
 
@@ -30,7 +37,7 @@ class App
     if role == 'student'
       puts 'Enter parent permission (true/false):'
       parent_permission = gets.chomp.downcase == 'true'
-      person = Student.new(age, name, parent_permission: parent_permission)
+      person = Student.new(age, classroom, name, parent_permission: parent_permission)
     elsif role == 'teacher'
       puts 'Enter specialization:'
       specialization = gets.chomp
@@ -44,6 +51,7 @@ class App
     puts "#{role.capitalize} '#{name}' created."
   end
 
+  # rubocop:enable Metrics/MethodLength
   def create_book
     puts 'Enter title:'
     title = gets.chomp
