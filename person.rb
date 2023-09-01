@@ -31,8 +31,3 @@ class Person < Nameable
     @age >= 18
   end
 end
-
-person = Person.new(25, 'Alice')
-puts "Person ID: #{person.id}" # random id
-puts "Person Name: #{person.name}" # Alice
-puts "Person Age: #{person.age}" # 25

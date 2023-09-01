@@ -17,10 +17,3 @@ class Student < Person
     '¯(ツ)/¯'
   end
 end
-student = Student.new(17, 'Class A')
-
-# Output attributes using getters
-puts "Student ID: #{student.id}"
-puts "Student Age: #{student.age}"
-puts "Student Classroom: #{student.classroom}"
-puts "Student playing hooky: #{student.play_hooky}"
