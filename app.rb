@@ -2,11 +2,12 @@ require_relative 'person'
 require_relative 'student'
 require_relative 'teacher'
 require_relative 'associations/book'
+
 class App
-  def initialize(books: [], people: [], rental: [])
-    @books = books
-    @people = people
-    @rental = rental
+  def initialize
+    @books = []
+    @people = []
+    @rental = []
   end
 
   def list_books
@@ -20,10 +21,13 @@ class App
     end
   end
 
-  # rubocop:disable Metrics/MethodLength
-  def create_person(role)
-    classroom = nil
+  def create_person_prompt
+    puts 'Enter role (student/teacher):'
+    role = gets.chomp.downcase
+    create_person(role)
+  end
 
+  def create_person(role)
     if role == 'student'
       puts 'Enter classroom:'
       classroom = gets.chomp
@@ -51,8 +55,7 @@ class App
     puts "#{role.capitalize} '#{name}' created."
   end
 
-  # rubocop:enable Metrics/MethodLength
-  def create_book
+  def create_book_prompt
     puts 'Enter title:'
     title = gets.chomp
 
@@ -64,13 +67,47 @@ class App
     puts "Book '#{title}' by #{author} created."
   end
 
+  def create_rental_prompt
+    puts 'Enter person ID:'
+    person_id = gets.chomp.to_i
+    person = @people.find { |p| p.id == person_id }
+  
+    if person.nil?
+      puts 'Person not found.'
+      return
+    end
+  
+    puts 'Enter book ID:'
+    book_id = gets.chomp.to_i
+    book = @books.find { |b| b.id == book_id }
+  
+    if book.nil?
+      puts 'Book not found.'
+      return
+    end
+  
+  end
+  
+  def list_rentals_for_person_prompt
+    puts 'Enter person ID:'
+    person_id = gets.chomp.to_i
+    list_rentals_for_person(person_id)
+  end
+  
   def list_rentals_for_person(person_id)
     person = @people.find { |p| p.id == person_id }
-    return unless person
-
+    if person.nil?
+      puts 'Person not found.'
+      return
+    end
+  
+    # Logic to list rentals for the specified person
     person.rentals.each do |rental|
       book = @books.find { |b| b.id == rental.book_id }
       puts "Book: #{book.title}, Date: #{rental.date}"
     end
   end
 end
+
+  
+  
