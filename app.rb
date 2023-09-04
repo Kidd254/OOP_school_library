@@ -27,25 +27,30 @@ class App
     create_person(role)
   end
 
+  def obtain_person_data
+    puts 'Enter name:'
+    @name = gets.chomp
+
+    puts 'Enter age:'
+    @age = gets.chomp.to_i
+  end
+
   def create_person(role)
     if role == 'student'
       puts 'Enter classroom:'
       classroom = gets.chomp
     end
-    puts 'Enter name:'
-    name = gets.chomp
 
-    puts 'Enter age:'
-    age = gets.chomp.to_i
+    obtain_person_data
 
     if role == 'student'
       puts 'Enter parent permission (true/false):'
       parent_permission = gets.chomp.downcase == 'true'
-      person = Student.new(age, classroom, name, parent_permission: parent_permission)
+      person = Student.new(@age, classroom, @name, parent_permission: parent_permission)
     elsif role == 'teacher'
       puts 'Enter specialization:'
       specialization = gets.chomp
-      person = Teacher.new(age, name, specialization: specialization)
+      person = Teacher.new(@age, @name, specialization: specialization)
     else
       puts 'Invalid role'
       return
@@ -71,36 +76,35 @@ class App
     puts 'Enter person ID:'
     person_id = gets.chomp.to_i
     person = @people.find { |p| p.id == person_id }
-  
+
     if person.nil?
       puts 'Person not found.'
       return
     end
-  
+
     puts 'Enter book ID:'
     book_id = gets.chomp.to_i
     book = @books.find { |b| b.id == book_id }
-  
-    if book.nil?
-      puts 'Book not found.'
-      return
-    end
-  
+
+    return unless book.nil?
+
+    puts 'Book not found.'
+    nil
   end
-  
+
   def list_rentals_for_person_prompt
     puts 'Enter person ID:'
     person_id = gets.chomp.to_i
     list_rentals_for_person(person_id)
   end
-  
+
   def list_rentals_for_person(person_id)
     person = @people.find { |p| p.id == person_id }
     if person.nil?
       puts 'Person not found.'
       return
     end
-  
+
     # Logic to list rentals for the specified person
     person.rentals.each do |rental|
       book = @books.find { |b| b.id == rental.book_id }
@@ -108,6 +112,3 @@ class App
     end
   end
 end
-
-  
-  
