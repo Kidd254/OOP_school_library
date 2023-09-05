@@ -11,4 +11,20 @@ class Teacher < Person
   def can_use_services?
     true
   end
+
+  def to_hash
+    {
+      'age' => @age,
+      'name' => @name,
+      'specialization' => @specialization,
+      'role' => 'teacher' 
+    }
+  end
+
+  def self.from_hash(data)
+    age = data['age']
+    name = data['name']
+    specialization = data['specialization']
+    Teacher.new(age, name, specialization: specialization)
+  end
 end
