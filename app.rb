@@ -1,3 +1,4 @@
+require 'json'
 require 'date'
 require_relative 'person'
 require_relative 'student'
@@ -15,7 +16,7 @@ class App
 
   def list_books
     @books.each_with_index do |book, index|
-      puts "Index: #{index}, Title: #{book.title}"
+      puts "Index: #{index}, Title: #{book.title}, Author: #{book.author}"
     end
   end
 
@@ -107,6 +108,65 @@ class App
   def list_rentals_for_person(person_id)
     @rental.each do |rt|
       puts "date: #{rt.date}, title: #{rt.book.title}, person: #{rt.person.name}" if rt.person.id == person_id
+    end
+  end
+
+  def save_data
+    save_books
+    save_people
+    save_rentals
+  end
+
+  # Load all data from JSON files
+  def load_data
+    load_books
+    load_people
+    load_rentals
+
+  end
+
+  private
+
+  def save_books
+    File.write('books.json', JSON.generate(@books))
+  end
+
+  def load_books
+    if File.exist?('books.json')
+      file_data = File.read('books.json')
+      parsed_data = JSON.parse(file_data)
+  
+      @books = parsed_data.map do |book_data|
+        Book.new(book_data['title'], book_data['author'])
+      end
+    else
+      @books = [] # Initialize as an empty array if the file doesn't exist
+    end
+  end
+
+  def save_people
+    File.write('people.json', JSON.generate(@people))
+  end
+
+  def load_people
+    if File.exist?('people.json')
+      file_data = File.read('people.json')
+      @people = JSON.parse(file_data)
+    else
+      @people = [] # Initialize as an empty array if the file doesn't exist
+    end
+  end
+
+  def save_rentals
+    File.write('rentals.json', JSON.generate(@rental))
+  end
+
+  def load_rentals
+    if File.exist?('rentals.json')
+      file_data = File.read('rentals.json')
+      @rental = JSON.parse(file_data)
+    else
+      @rental = [] # Initialize as an empty array if the file doesn't exist
     end
   end
 end
