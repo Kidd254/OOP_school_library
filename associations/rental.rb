@@ -9,8 +9,23 @@ class Rental
     @book = book
     @person = person
 
-    # Add the rental to the associated book and person
     book.add_rental(self)
     person.add_rental(self)
+  end
+
+  def to_hash
+    {
+      date: @date.to_s,
+      book: @book.to_hash,
+      person: @person.to_hash
+    }
+  end
+
+  # Create a Rental object from a hash
+  def self.from_hash(data)
+    date = Date.parse(data['date'])
+    book = Book.from_hash(data['book'])
+    person = Person.from_hash(data['person'])
+    Rental.new(date, book, person)
   end
 end
