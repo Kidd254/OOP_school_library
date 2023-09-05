@@ -127,21 +127,19 @@ class App
   private
 
   def save_books
-    File.write('books.json', JSON.generate(@books))
+    book_data = @books.map(&:to_hash)
+    File.write('books.json', JSON.generate(book_data))
   end
 
   def load_books
     if File.exist?('books.json')
       file_data = File.read('books.json')
-      parsed_data = JSON.parse(file_data)
-
-      @books = parsed_data.map do |book_data|
-        Book.new(book_data['title'], book_data['author'])
-      end
+      book_data = JSON.parse(file_data)
+      @books = book_data.map { |data| Book.from_hash(data) }
     else
       @books = [] # Initialize as an empty array if the file doesn't exist
     end
-  end
+  end  
 
   def save_people
     File.write('people.json', JSON.generate(@people))
