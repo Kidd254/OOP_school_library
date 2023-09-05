@@ -39,7 +39,7 @@ loop do
     app.list_rentals_for_person_prompt
   when 7
     puts 'Goodbye!'
-    app.save_data # Save data to JSON files before exiting
+    app.save_data 
     break
   else
     puts 'Invalid option. Please choose again.'
