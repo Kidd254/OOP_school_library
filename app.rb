@@ -122,7 +122,6 @@ class App
     load_books
     load_people
     load_rentals
-
   end
 
   private
@@ -135,7 +134,7 @@ class App
     if File.exist?('books.json')
       file_data = File.read('books.json')
       parsed_data = JSON.parse(file_data)
-  
+
       @books = parsed_data.map do |book_data|
         Book.new(book_data['title'], book_data['author'])
       end
@@ -151,9 +150,20 @@ class App
   def load_people
     if File.exist?('people.json')
       file_data = File.read('people.json')
-      @people = JSON.parse(file_data)
+      @people = JSON.parse(file_data).map do |person_data|
+        if person_data['role'] == 'student'
+          Student.new(person_data['age'], person_data['classroom'], person_data['name'],
+                      parent_permission: person_data['parent_permission'])
+        elsif person_data['role'] == 'teacher'
+          Teacher.new(person_data['age'], person_data['name'], specialization: person_data['specialization'])
+        else
+
+          puts "Invalid role: #{person_data['role']}"
+
+        end
+      end
     else
-      @people = [] # Initialize as an empty array if the file doesn't exist
+      @people = []
     end
   end
 
