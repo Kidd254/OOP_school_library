@@ -1,4 +1,3 @@
-require 'pry'
 require_relative 'app'
 require_relative 'person'
 require_relative 'student'
@@ -7,7 +6,7 @@ require_relative 'associations/book'
 
 app = App.new
 
-loop do
+def choice_option
   puts 'Choose an option:'
   puts '1. List all books'
   puts '2. List all people'
@@ -17,15 +16,19 @@ loop do
   puts '6. List all rentals for a person'
   puts '7. Quit'
 
-  choice = gets.chomp.to_i
+  @choice = gets.chomp.to_i
+end
 
-  case choice
+loop do
+  choice_option
+
+  case @choice
   when 1
     app.list_books
   when 2
     app.list_people
   when 3
-    app.create_person_prompt
+    app.create_person
   when 4
     app.create_book_prompt
   when 5
