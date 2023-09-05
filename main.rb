@@ -6,6 +6,8 @@ require_relative 'associations/book'
 
 app = App.new
 
+app.load_data
+
 def choice_option
   puts 'Choose an option:'
   puts '1. List all books'
@@ -37,6 +39,7 @@ loop do
     app.list_rentals_for_person_prompt
   when 7
     puts 'Goodbye!'
+    app.save_data # Save data to JSON files before exiting
     break
   else
     puts 'Invalid option. Please choose again.'
