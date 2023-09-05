@@ -142,39 +142,55 @@ class App
   end  
 
   def save_people
-    File.write('people.json', JSON.generate(@people))
+    people_data = @people.map(&:to_hash)
+    File.write('people.json', JSON.generate(people_data))
   end
 
   def load_people
     if File.exist?('people.json')
       file_data = File.read('people.json')
-      @people = JSON.parse(file_data).map do |person_data|
-        if person_data['role'] == 'student'
-          Student.new(person_data['age'], person_data['classroom'], person_data['name'],
-                      parent_permission: person_data['parent_permission'])
-        elsif person_data['role'] == 'teacher'
-          Teacher.new(person_data['age'], person_data['name'], specialization: person_data['specialization'])
+      people_data = JSON.parse(file_data)
+      @people = people_data.map do |person_data|
+        if person_data && person_data['role']
+          if person_data['role'] == 'student'
+            Student.from_hash(person_data)
+          elsif person_data['role'] == 'teacher'
+            Teacher.from_hash(person_data)
+          else
+            puts "Invalid role: #{person_data['role']}"
+            nil # Return nil for invalid data
+          end
         else
-
-          puts "Invalid role: #{person_data['role']}"
-
+          puts "Invalid or missing data in JSON: #{person_data}"
+          nil # Return nil for invalid data
         end
-      end
+      end.compact # Remove any nil entries
     else
       @people = []
     end
   end
+  
 
   def save_rentals
-    File.write('rentals.json', JSON.generate(@rental))
-  end
+    rental_data = @rental.map(&:to_hash)
+    File.write('rentals.json', JSON.generate(rental_data))
+  end  
 
   def load_rentals
     if File.exist?('rentals.json')
       file_data = File.read('rentals.json')
-      @rental = JSON.parse(file_data)
+      rentals_data = JSON.parse(file_data)
+      @rental = rentals_data.map do |rental_data|
+        if rental_data && rental_data['date'] && rental_data['book'] && rental_data['person']
+          book = Book.from_hash(rental_data['book'])
+          person = Person.from_hash(rental_data['person'])
+          Rental.new(Date.parse(rental_data['date']), book, person)
+        else
+          puts "Invalid or missing data in JSON: #{rental_data}"
+        end
+      end
     else
-      @rental = [] # Initialize as an empty array if the file doesn't exist
+      @rental = []
     end
   end
 end
