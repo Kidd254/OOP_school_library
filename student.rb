@@ -16,4 +16,22 @@ class Student < Person
   def play_hooky
     '¯(ツ)/¯'
   end
+
+  def to_hash
+    {
+      'age' => @age,
+      'classroom' => @classroom,
+      'name' => @name,
+      'parent_permission' => @parent_permission,
+      'role' => 'student'
+    }
+  end
+
+  def self.from_hash(data)
+    age = data['age']
+    classroom = data['classroom']
+    name = data['name']
+    parent_permission = data['parent_permission']
+    Student.new(age, classroom, name, parent_permission: parent_permission)
+  end
 end

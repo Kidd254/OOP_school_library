@@ -1,3 +1,4 @@
+require 'json'
 require 'date'
 require_relative 'person'
 require_relative 'student'
@@ -5,6 +6,9 @@ require_relative 'teacher'
 require_relative 'associations/book'
 require_relative 'user_interaction'
 require_relative 'associations/rental'
+require_relative 'storagebooks'
+require_relative 'storagepeople'
+require_relative 'storagerentals'
 
 class App
   def initialize
@@ -15,7 +19,7 @@ class App
 
   def list_books
     @books.each_with_index do |book, index|
-      puts "Index: #{index}, Title: #{book.title}"
+      puts "Index: #{index}, Title: #{book.title}, Author: #{book.author}"
     end
   end
 
@@ -35,13 +39,12 @@ class App
       return
     end
 
-    classroom = user_int.classroom_value if role == 'student'
-
     name = user_int.obtain_person_name
 
     age = user_int.obtain_person_age
 
     if role == 'student'
+      classroom = user_int.classroom_value
       pp = user_int.parent_permission_value
       person = Student.new(age, classroom, name, parent_permission: pp)
     end
@@ -99,14 +102,31 @@ class App
     puts "Rental created for '#{person.name}' and '#{book.title}' on #{Date.today}."
   end
 
-  def list_rentals_for_person_prompt
-    user_int = Userinteraction.new
-    list_rentals_for_person(user_int.enter_person_id)
+  def list_rentals
+    @rental.each do |rt|
+      puts "date: #{rt.date}, title: #{rt.book.title}, person: #{rt.person.name}"
+    end
   end
 
-  def list_rentals_for_person(person_id)
-    @rental.each do |rt|
-      puts "date: #{rt.date}, title: #{rt.book.title}, person: #{rt.person.name}" if rt.person.id == person_id
-    end
+  def save_data
+    databook = Storagebooks.new
+    databook.save_books(@books)
+
+    datapeople = Storagepeople.new
+    datapeople.save_people(@people)
+
+    datarentals = Storagerentals.new
+    datarentals.save_rentals(@rental)
+  end
+
+  def load_data
+    databook = Storagebooks.new
+    @books = databook.load_books
+
+    datapeople = Storagepeople.new
+    @people = datapeople.load_people
+
+    datarentals = Storagerentals.new
+    @rental = datarentals.load_rentals
   end
 end
