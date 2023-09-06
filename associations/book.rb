@@ -31,4 +31,3 @@ class Book
     Book.new(title, author)
   end
 end
-

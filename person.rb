@@ -32,7 +32,7 @@ class Person < Nameable
       'parent_permission' => @parent_permission
     }
   end
-  
+
   def self.from_hash(data)
     age = data['age']
     name = data['name']
