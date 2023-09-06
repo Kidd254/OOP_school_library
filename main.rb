@@ -15,7 +15,7 @@ def choice_option
   puts '3. Create a person'
   puts '4. Create a book'
   puts '5. Create a rental'
-  puts '6. List all rentals for a person'
+  puts '6. List all active rentals'
   puts '7. Quit'
 
   @choice = gets.chomp.to_i
@@ -36,7 +36,7 @@ loop do
   when 5
     app.create_rental_prompt
   when 6
-    app.list_rentals_for_person_prompt
+    app.list_rentals
   when 7
     puts 'Goodbye!'
     app.save_data
