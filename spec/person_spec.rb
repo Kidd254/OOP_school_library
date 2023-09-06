@@ -3,9 +3,7 @@ require_relative '../ruby_files/nameable'
 
 
 RSpec.describe Person do
-
   describe 'attributes' do
-
     let(:person) { Person.new(20, 'John', parent_permission: true) }
 
     it 'has a name' do
@@ -24,7 +22,6 @@ RSpec.describe Person do
   end
 
   context 'usage permissions' do
-
     let(:person_with_permission) { Person.new(20, 'John', parent_permission: true) }
     let(:person_without_permission) { Person.new(16, 'Sam', parent_permission: false) }
 
@@ -42,4 +39,3 @@ RSpec.describe Person do
     end
   end
 end
-

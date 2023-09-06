@@ -1,5 +1,5 @@
 require_relative '../teacher'
-require_relative '../person' 
+require_relative '../person'
 
 
 RSpec.describe Teacher do
