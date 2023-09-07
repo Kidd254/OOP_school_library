@@ -1,0 +1,5 @@
+require_relative '../associations/book.rb'
+require_relative '../associations/rental.rb'
+require_relative '../associations/classroom.rb'
+require_relative '../teacher.rb'
+require_relative '../student.rb'
