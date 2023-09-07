@@ -37,4 +37,35 @@ RSpec.describe Person do
       expect(person_without_permission.can_use_services?).to be false
     end
   end
+  it 'converts to a hash' do
+    person = Person.new(25, 'Alice', parent_permission: true)
+    expected_hash = {
+      'age' => 25,
+      'name' => 'Alice',
+      'parent_permission' => true
+    }
+    expect(person.to_hash).to eq(expected_hash)
+  end
+
+  # Test the 'correct_name' method
+  it 'returns the correct name' do
+    person = Person.new(30, 'Bob', parent_permission: false)
+    expect(person.correct_name).to eq('Bob')
+  end
+end
+
+context 'usage permissions' do
+  # Test the 'self.from_hash' method
+  it 'creates a Person object from a hash' do
+    data = {
+      'age' => 18,
+      'name' => 'Eve',
+      'parent_permission' => true
+    }
+    person = Person.from_hash(data)
+    expect(person).to be_a(Person)
+    expect(person.age).to eq(18)
+    expect(person.name).to eq('Eve')
+    expect(person.parent_permission).to be true
+  end
 end
