@@ -6,9 +6,9 @@ require_relative 'teacher'
 require_relative 'associations/book'
 require_relative 'user_interaction'
 require_relative 'associations/rental'
-require_relative 'storagebooks'
-require_relative 'storagepeople'
-require_relative 'storagerentals'
+require_relative 'data_storage/storagebooks'
+require_relative 'data_storage/storagepeople'
+require_relative 'data_storage/storagerentals'
 
 class App
   def initialize

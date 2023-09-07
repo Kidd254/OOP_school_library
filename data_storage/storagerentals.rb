@@ -1,5 +1,5 @@
-require_relative 'app'
-require_relative 'person'
+require_relative '../app'
+require_relative '../person'
 
 class Storagerentals
   def load_rentals
