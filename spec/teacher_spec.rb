@@ -1,7 +1,6 @@
 require_relative '../teacher'
 require_relative '../person'
 
-
 RSpec.describe Teacher do
   context 'attributes' do
     let(:teacher) { Teacher.new(35, 'Alice', specialization: 'Math') }

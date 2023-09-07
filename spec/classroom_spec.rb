@@ -15,7 +15,7 @@ RSpec.describe Classroom do
 
     it 'initializes an empty students array by default' do
       expect(classroom.students).to be_empty
-    end  
+    end
 
     it 'allows specifying students during initialization' do
       classroom_with_students = Classroom.new('Math', students: [student])
@@ -30,5 +30,4 @@ RSpec.describe Classroom do
       expect(student.classroom).to eq(classroom)
     end
   end
-  
 end

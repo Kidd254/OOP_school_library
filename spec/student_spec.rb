@@ -1,7 +1,6 @@
 require_relative '../student'
 require_relative '../person' # Adjust the path as needed
 
-
 RSpec.describe Student do
   # Define a classroom instance variable for testing
   let(:classroom) { double('Classroom') }

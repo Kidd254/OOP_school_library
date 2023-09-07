@@ -1,9 +1,9 @@
-require_relative '../associations/book.rb'
-require_relative '../teacher.rb'
+require_relative '../associations/book'
+require_relative '../teacher'
 
 RSpec.describe Book do
   let(:book) { Book.new('El viejo y el mar', 'Ernest Hemingway') }
-  let(:teacher) {Teacher.new(60)}
+  let(:teacher) { Teacher.new(60) }
 
   describe '#initialize' do
     it 'creates a new Book instance' do
@@ -18,9 +18,9 @@ RSpec.describe Book do
       expect(book.rentals).to be_empty
     end
   end
- 
+
   describe '#add_rental' do
-    it 'adds a rental to the rentals array' do 
+    it 'adds a rental to the rentals array' do
       rental = Rental.new('23/09/23', book, teacher)
       book.add_rental(rental)
       expect(book.rentals).to include(rental)
@@ -53,5 +53,4 @@ RSpec.describe Book do
       expect(new_book.author).to eq('Ernest Hemingway')
     end
   end
- 
 end

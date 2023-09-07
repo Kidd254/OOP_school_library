@@ -23,7 +23,7 @@ RSpec.describe Rental do
       expect(book.rentals).to include(rental)
       expect(person.rentals).to include(rental)
     end
-  end  
+  end
 
   describe '#to_hash' do
     it 'returns a hash representation of the rental' do
@@ -50,5 +50,4 @@ RSpec.describe Rental do
       expect(rental.person.name).to eq('Sample Person')
     end
   end
- 
 end

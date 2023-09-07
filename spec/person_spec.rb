@@ -1,7 +1,6 @@
 require_relative '../person'
 require_relative '../ruby_files/nameable'
 
-
 RSpec.describe Person do
   describe 'attributes' do
     let(:person) { Person.new(20, 'John', parent_permission: true) }
