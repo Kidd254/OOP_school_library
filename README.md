@@ -75,7 +75,7 @@ git clone https://github.com/Kidd254/OOP_school_library.git
 
 ## 👥 Authors <a id="authors"></a>
 
-👤 **Lawrence Muema Kioko**
+     👤 **Lawrence Muema Kioko**
 
 - GitHub: [@kidd254](https://github.com/Kidd254)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/lawrence-muema-kioko)
